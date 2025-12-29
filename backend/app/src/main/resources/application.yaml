@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: app
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/pathific}
+    username: ${SPRING_DATASOURCE_USERNAME:pathific}
+    password: ${SPRING_DATASOURCE_PASSWORD:pathific_pass}
+  jdbc:
+    template:
+      fetch-size: 50
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
