@@ -1,5 +1,0 @@
-CREATE TABLE IF NOT EXISTS hello_events (
-  id SERIAL PRIMARY KEY,
-  message TEXT NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);

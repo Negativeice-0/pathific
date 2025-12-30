@@ -7,10 +7,16 @@ spring:
     password: ${SPRING_DATASOURCE_PASSWORD:pathific_pass}
   jdbc:
     template:
-      fetch-size: 50
+      fetch-size: 100
 
 server:
   port: 8080
+
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET:change-me-in-env}
+    issuer: pathific
+    expiresMinutes: 120
 
 management:
   endpoints:

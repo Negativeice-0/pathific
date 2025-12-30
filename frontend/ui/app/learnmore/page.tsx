@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 
+import Image from 'next/image';
+import Link from 'next/link';
+
 type LearnItem = {
   title: string;
   description?: string;
@@ -29,7 +32,12 @@ export default function LearnMore() {
 
   return (
     <main style={{ padding: "2rem", background: "#121826", color: "#e6e8ee", minHeight: "100vh" }}>
-      <h1 className="text-3xl font-bold mb-4">Learn More</h1>
+     <div className="flex justify-between items-center p-4">
+  <Link href="/" className="inline-block">
+    <Image src="/images/logo.svg" alt="Logo" width={48} height={48} style={{ height: "auto"}}priority />
+  </Link>
+  <h1 className="text-3xl font-bold">Learn More</h1>
+</div>
       {error && <p style={{ color: "#ef4444" }}>{error}</p>}
       <div className="space-y-6">
         {items.map((item, i) => (

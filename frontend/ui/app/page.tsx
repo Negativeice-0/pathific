@@ -3,6 +3,9 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import Image from 'next/image';
+import Link from 'next/link';
+//import type { ReactNode } from 'react';
 /**
  * Minimal, emotionally resonant Welcome page
  * - Typewriter headline
@@ -29,7 +32,9 @@ export default function Welcome() {
   return (
     <div style={container}>
       {/* Logo top-left */}
-      <div style={logo}>🌌 Pathific</div>
+      <Link href="/" className="inline-block">
+  <Image src="/images/logo.svg" alt="Logo" width={120} height={40} priority />
+</Link>
 
       {/* Learn More top-right */}
       <button style={learnMore} onClick={() => router.push("/learnmore")}>

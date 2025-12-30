@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+
 export const metadata: Metadata = {
   title: "Pathific",
-  description: "Structured learning for a social-first world."
+  description: "Structured learning for a social-first world.",
+  icons: {
+    icon: "/images/logo.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
