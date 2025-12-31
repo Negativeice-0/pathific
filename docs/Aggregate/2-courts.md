@@ -211,13 +211,9 @@ spring:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/pathific}
     username: ${SPRING_DATASOURCE_USERNAME:pathific}
     password: ${SPRING_DATASOURCE_PASSWORD:pathific_pass}
-  jdbc:
-    template:
-      fetch-size: 100
-  jpa: 
-    hibernate:
-      ddl-auto: none 
-      show-sql: true    
+ jpa: 
+   hibernate: 
+     ddl-auto:{SPRING_JPA_HIBERNATE_DDL_AUTO:none} show-sql: true 
 
 server:
   port: 8080

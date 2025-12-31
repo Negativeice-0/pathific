@@ -2,16 +2,14 @@ spring:
   application:
     name: app
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/pathific}
+    # Default points to docker service name "db"
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://db:5432/pathific}
     username: ${SPRING_DATASOURCE_USERNAME:pathific}
     password: ${SPRING_DATASOURCE_PASSWORD:pathific_pass}
-  jdbc:
-    template:
-      fetch-size: 100
-  jpa: 
+  jpa:
     hibernate:
-      ddl-auto: none 
-      show-sql: true    
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:none}
+    show-sql: true
 
 server:
   port: 8080
