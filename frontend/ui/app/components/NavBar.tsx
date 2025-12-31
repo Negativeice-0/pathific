@@ -24,9 +24,9 @@ export default function NavBar() {
       <div className="hidden md:flex gap-6">
         <Link href="/main/home" className="hover:text-sky-300">Dashboard</Link>
         <Link href="/settings" className="hover:text-sky-300">Settings</Link>
-        <Link href="/curators" className="hover:text-sky-300">Top Curators</Link>
+        <Link href="/main/curators" className="hover:text-sky-300">Top Curators</Link>
         <Link href="/main/courts" className="hover:text-sky-300">Curator Courts</Link>
-        <Link href="/curate" className="rounded-md bg-sky-500/20 px-3 py-1 text-sky-300 hover:bg-sky-500/30">
+        <Link href="/main/curate" className="rounded-md bg-sky-500/20 px-3 py-1 text-sky-300 hover:bg-sky-500/30">
           Start your curation
         </Link>
       </div>
@@ -49,9 +49,9 @@ export default function NavBar() {
         <div className="absolute top-16 left-0 w-full bg-black/90 backdrop-blur-md border-t border-white/20 p-6 flex flex-col gap-4 md:hidden">
           <Link href="/main/home" className="hover:text-sky-300">Dashboard</Link>
           <Link href="/settings" className="hover:text-sky-300">Settings</Link>
-          <Link href="/curators" className="hover:text-sky-300">Top Curators</Link>
+          <Link href="/main/curators" className="hover:text-sky-300">Top Curators</Link>
           <Link href="/main/courts" className="hover:text-sky-300">Curator Courts</Link>
-          <Link href="/curate" className="rounded-md bg-sky-500/20 px-3 py-1 text-sky-300 hover:bg-sky-500/30">
+          <Link href="/main/curate" className="rounded-md bg-sky-500/20 px-3 py-1 text-sky-300 hover:bg-sky-500/30">
             Start your curation
           </Link>
           <button className="rounded-full bg-linear-to-r from-pink-500 to-red-500 text-white px-4 py-1 hover:opacity-80">
