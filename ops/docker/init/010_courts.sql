@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS courts (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  slug VARCHAR(140) UNIQUE NOT NULL,
+  summary TEXT,
+  category VARCHAR(80),
+  created_at TIMESTAMP DEFAULT NOW()
+);

@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS badges (
+  id SERIAL PRIMARY KEY,
+  code VARCHAR(64) UNIQUE NOT NULL,
+  label VARCHAR(100) NOT NULL,
+  description TEXT
+);
