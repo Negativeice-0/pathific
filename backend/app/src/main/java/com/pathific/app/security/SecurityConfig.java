@@ -100,6 +100,7 @@ public class SecurityConfig {
         .requestMatchers(HttpMethod.GET, "/api/courts").permitAll()
         .requestMatchers(HttpMethod.GET, "/api/badges").permitAll()
         .requestMatchers(HttpMethod.GET, "/api/courts/winner").permitAll()
+        .requestMatchers("/api/courts/**").permitAll() // allow courts for now
 
 
         // Later: you can add admin-only rules here, e.g.: --uncomment below to add.
