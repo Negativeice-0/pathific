@@ -1,42 +1,33 @@
 package com.pathific.app.entity;
 
-import java.sql.Timestamp;
-
 import jakarta.persistence.*;
 
-/**
- * Court entity represents a curator court.
- * - name: unique court name
- * - description: short summary
- * - createdAt: server-side timestamp
- */
 @Entity
 @Table(name = "courts")
 public class Court {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable=false, unique=true)
     private String name;
-
-    @Column(nullable=false, columnDefinition = "TEXT")
-    private String description;
-
-    @Column(name="created_at", nullable=false)
-    private Timestamp createdAt;
+    
+    private String category;
+    
+    @Column(unique = true)
+    private String slug;
+    
+    @Column(columnDefinition = "TEXT")
+    private String summary;
 
     /** Default constructor required by JPA */
-    public Court() {
-        this.createdAt = new Timestamp(System.currentTimeMillis());
-    }
+    public Court() {}
 
     /** Convenience constructor */
-    public Court(String name, String description) {
+    public Court(String name, String category, String slug, String summary) {
         this.name = name;
-        this.description = description;
-        this.createdAt = new Timestamp(System.currentTimeMillis());
+        this.category = category;
+        this.slug = slug;
+        this.summary = summary;
     }
 
     // --- Getters and Setters ---
@@ -47,9 +38,12 @@ public class Court {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
 
-    public Timestamp getCreatedAt() { return createdAt; }
-    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+    public String getSlug() { return slug; }
+    public void setSlug(String slug) { this.slug = slug; }
+
+    public String getSummary() { return summary; }
+    public void setSummary(String summary) { this.summary = summary; }
 }
