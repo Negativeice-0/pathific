@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import LogoLink from "../components/LogoLink";
+
+export const metadata: Metadata = {
+  title: "Pathific",
+  description: "Structured learning for a social-first world.",
+  icons: {
+    icon: "/images/logo.svg",
+  },
+};
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
