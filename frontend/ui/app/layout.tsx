@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-
 export const metadata: Metadata = {
   title: "Pathific",
   description: "Structured learning for a social-first world.",
   icons: {
-    icon: "/images/logo.svg",
+    icon: "images/logo.svg",
   },
 };
 
