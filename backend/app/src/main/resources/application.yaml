@@ -8,6 +8,10 @@ spring:
   jdbc:
     template:
       fetch-size: 100
+  jpa: 
+    hibernate:
+      ddl-auto: none 
+      show-sql: true    
 
 server:
   port: 8080

@@ -6,6 +6,17 @@ You’re right to ask for imports, exact file paths, and complete code with gett
 
 ## Project structure
 
+download deps in  by adding below to pom.xml
+<dependency>
+       		<groupId>jakarta.persistence</groupId>
+       		<artifactId>jakarta.persistence-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+		<dependency>
+    		<groupId>org.springframework.data</groupId>
+    		<artifactId>spring-data-jpa</artifactId>
+		</dependency>
+
 - **Backend (Spring Boot)**
   - `src/main/java/com/pathific/`  
     - `entity/Court.java`  
@@ -181,9 +192,7 @@ CREATE TABLE IF NOT EXISTS courts (
 
 ### Apply migration (manual, tool‑free)
 ```bash
-docker exec -i pathific_db \
-  psql -U pathific_dev_user -d pathific_dev \
-  -f migrations/004_create_courts.sql
+docker exec -i pathific_db psql -U pathific -d pathific < migrations/004_create_courts.sql
 ```
 
 > Add to `MIGRATIONS.md`:
@@ -196,14 +205,28 @@ docker exec -i pathific_db \
 ### `src/main/resources/application.yml`
 ```yaml
 spring:
+  application:
+    name: app
   datasource:
-    url: jdbc:postgresql://localhost:5432/pathific_dev
-    username: pathific_dev_user
-    password: pathific_dev_pass
-  jpa:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/pathific}
+    username: ${SPRING_DATASOURCE_USERNAME:pathific}
+    password: ${SPRING_DATASOURCE_PASSWORD:pathific_pass}
+  jdbc:
+    template:
+      fetch-size: 100
+  jpa: 
     hibernate:
-      ddl-auto: none
-    show-sql: true
+      ddl-auto: none 
+      show-sql: true    
+
+server:
+  port: 8080
+
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET:change-me-in-env}
+    issuer: pathific
+    expiresMinutes: 120
 
 management:
   endpoints:
