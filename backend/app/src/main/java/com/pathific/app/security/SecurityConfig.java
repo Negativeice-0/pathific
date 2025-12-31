@@ -97,6 +97,11 @@ public class SecurityConfig {
         // Registration & Login endpoints (always public)
         .requestMatchers("/api/auth/**").permitAll()
 
+        .requestMatchers(HttpMethod.GET, "/api/courts").permitAll()
+        .requestMatchers(HttpMethod.GET, "/api/badges").permitAll()
+        .requestMatchers(HttpMethod.GET, "/api/courts/winner").permitAll()
+
+
         // Later: you can add admin-only rules here, e.g.: --uncomment below to add.
         // .requestMatchers("/api/users/**").hasRole("ADMIN")
 
