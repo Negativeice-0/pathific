@@ -16,3 +16,5 @@ no need to cd
   #Db
   db is run once on build - so drop and rebuild for new files in "ops/docker/init" to be picked.
 
+Check out migrations in docs for hack
+004_create_courts.sql (YYYY‑MM‑DD)
