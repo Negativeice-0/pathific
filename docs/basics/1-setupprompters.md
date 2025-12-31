@@ -1,3 +1,5 @@
+Npm install allows you to install some petty cool stuff like drag and drop functionality, type writter and three js smoky gradient, but it can also do a lot on it's own.
+
 After uploadeing pathific.
 
 Take it slow, i mean start from pathific dir alone, 
