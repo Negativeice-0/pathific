@@ -121,7 +121,7 @@ export default function NavBar() {
       </div>
 
       {/* Vibrant logout */}
-      <button className="hidden md:inline rounded-full bg-gradient-to-r from-pink-500 to-red-500 text-white px-4 py-1 hover:opacity-80">
+      <button className="hidden md:inline rounded-full bg-linear-to-r from-pink-500 to-red-500 text-white px-4 py-1 hover:opacity-80">
         Logout
       </button>
 
@@ -136,7 +136,7 @@ export default function NavBar() {
           <Link href="/curators" className="hover:text-sky-300">Top Curators</Link>
           <Link href="/courts" className="hover:text-sky-300">Curator Courts</Link>
           <Link href="/curate" className="rounded-md bg-sky-500/20 px-3 py-1 text-sky-300 hover:bg-sky-500/30">Start your curation</Link>
-          <button className="rounded-full bg-gradient-to-r from-pink-500 to-red-500 text-white px-4 py-1 hover:opacity-80">Logout</button>
+          <button className="rounded-full bg-linear-to-r from-pink-500 to-red-500 text-white px-4 py-1 hover:opacity-80">Logout</button>
         </div>
       )}
     </nav>

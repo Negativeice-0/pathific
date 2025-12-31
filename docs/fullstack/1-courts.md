@@ -184,7 +184,7 @@ export default async function ExplorePage() {
         <p className="mt-2 text-white/70">Elevate your organisation’s services and products from the competition.</p>
 
         {/* Weekly winner spotlight */}
-        <div className="mt-8 rounded-xl bg-gradient-to-r from-sky-900/40 to-indigo-900/30 p-6 border border-white/10">
+        <div className="mt-8 rounded-xl bg-linear-to-r from-sky-900/40 to-indigo-900/30 p-6 border border-white/10">
           <div className="text-white/80 text-sm">Weekly Winner</div>
           <div className="mt-2 text-xl font-bold">{winner?.name}</div>
           <div className="mt-1 text-white/60 text-sm">{winner?.reason}</div>
