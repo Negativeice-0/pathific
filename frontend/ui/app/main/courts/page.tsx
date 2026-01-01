@@ -1,14 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface Court {
   id: number;
+  name: string;
   category: string;
   slug: string;
   summary: string;
-  name: string;
 }
 
 export default function CourtsPage() {
@@ -23,14 +23,10 @@ export default function CourtsPage() {
         const res = await fetch("/api/courts");
         if (!res.ok) throw new Error(`Failed to load courts (${res.status})`);
         const data = await res.json();
-        if (Array.isArray(data.items)) {
-          setCourts(data.items);
-        } else {
-          setCourts([]);
-        }
+        setCourts(Array.isArray(data.items) ? data.items : []);
       } catch (e) {
-        const message = e instanceof Error ? e.message : "Network error";
-        setError(message);
+        const msg = e instanceof Error ? e.message : "Network error";
+        setError(msg);
       } finally {
         setLoading(false);
       }
@@ -41,11 +37,9 @@ export default function CourtsPage() {
   return (
     <div className="p-10">
       <section className="text-center max-w-3xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-          Curator Courts
-        </h1>
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">Curator Courts</h1>
         <p className="mt-3 text-white/70">
-          Where taste meets rigor—curate, learn, and lead with trust.
+          Structured arenas of defended micro‑learning—curate, learn, and lead with trust.
         </p>
       </section>
 
@@ -83,7 +77,7 @@ export default function CourtsPage() {
                     href={`/courts/${court.slug}`}
                     className="rounded-lg border border-white/20 bg-white/5 px-3 py-1 text-white/90 hover:bg-white/10"
                   >
-                    View court
+                    View pathway
                   </Link>
                   <Link
                     href={`/curate?court=${court.id}`}

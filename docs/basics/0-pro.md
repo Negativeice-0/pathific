@@ -1,0 +1,1 @@
+When going pro request for spring boot best practices through out building on top of contract first approach with verification after each segement.
