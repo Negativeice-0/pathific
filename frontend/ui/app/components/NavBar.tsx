@@ -10,7 +10,7 @@ export default function NavBar() {
   return (
     <nav className="mx-auto mt-4 w-full max-w-6xl rounded-xl bg-white/10 backdrop-blur-md shadow-lg border border-white/20 px-6 py-3 flex items-center justify-between">
       {/* Logo image */}
-      <Link href="/home" className="flex items-center">
+      <Link href="/main/home" className="flex items-center">
         <Image
           src="/images/logo.svg"
           alt="Pathific Logo"
