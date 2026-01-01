@@ -165,6 +165,41 @@ sequence_items was replaced with module_items
 
 completions were added later for proofing.
 
+
+
+
+
+
+
+
+
+## Issues.
+## The app is relatively up
+## But flutterwave and courts need more.
+frontend issue
+
+## Error Type
+Runtime SyntaxError
+
+## Error Message
+Failed to execute 'json' on 'Response': Unexpected end of JSON input
+
+
+    at onClick (app/main/courts/page.tsx:49:42)
+
+## Code Frame
+  47 |                       body:JSON.stringify({ amount:50, currency:"KES", email:"demo@pathific.local", phone:"254700000000", name:"Pathific Demo" })
+  48 |                     });
+> 49 |                     const data=await res.json(); if(data.ok && data.link){ window.location.href=data.link; } else { alert("Payment init failed"); }
+     |                                          ^
+  50 |                   }}
+  51 |                   className="rounded-lg bg-linear-to-r from-amber-500 to-orange-500 px-3 py-1 text-white font-semibold shadow hover:opacity-90"
+  52 |                 >Pay</button>
+
+Next.js version: 16.1.1 (Turbopack)
+
+
+## Backend
 Flutter wave might be a bit of an issue to implement -- nigeris did good with 3b annual revenue and now hq in california.
 
 Expected:<Payments: POST /api/payments/checkout returns { ok, link } (redirect to hosted checkout)>
@@ -229,3 +264,11 @@ public class FlutterwaveController {
 Why this path: Hosted checkout is fastest to demo and supports multiple rails (cards, mobile money, M‑Pesa) with minimal code. The Spring Boot example shows similar patterns for v3 integrationGithub.
 
 Guide yourself through api docs to ascertain where to to make changes an how everything works.
+
+* I also hopped to implement the completions in pathific relavant fashion (whether to merge existing or go no star reviews, or likes).
+
+* I would like the additional page for flutter wave payment processing especially for mpesa redirected to by pay button.
+
+* I would also like implement courts in a viral, moat, and unicorn friendly manner.
+
+Refer to the attached document and the "ui/app/main/courts/page.tsx" file you had generated prior.
