@@ -156,3 +156,76 @@ docker exec -i pathific_db psql -U pathific -d pathific < migrations/005_create_
 ---
 
 If you want, I can add a tiny “Add item” form to the Wizard (title input → POST → re‑fetch) so curators can build sequences without touching SQL.
+
+
+Only users and user_tokens were confirmed and never changed, courts changed a few times.
+Learn_items was replaced with modules.
+
+sequence_items was replaced with module_items
+
+completions were added later for proofing.
+
+Flutter wave might be a bit of an issue to implement -- nigeris did good with 3b annual revenue and now hq in california.
+
+Expected:<Payments: POST /api/payments/checkout returns { ok, link } (redirect to hosted checkout)>
+
+Got:<lsetga@lsetga:~/Advance/ambrosia/pathific$ POST /api/payments/checkout
+Please enter content (application/x-www-form-urlencoded) to be POSTed:>
+
+Frontend receptive to this:
+Flutterwave Standard (quick checkout)
+Approach: Use Flutterwave Standard—redirect to hosted checkout with amount, currency, and customer details; handle webhook for confirmation. Docs are clear and support mobile money/M‑Pesa via unified APIs. A Spring Boot example exists for referenceGithub.
+
+java
+// backend/src/main/java/com/pathific/payments/FlutterwaveController.java
+package com.pathific.payments;
+
+import org.springframework.http.*; import org.springframework.web.bind.annotation.*; import org.springframework.web.client.RestTemplate;
+import java.util.*;
+
+@RestController @RequestMapping("/api/payments")
+public class FlutterwaveController {
+  private final RestTemplate http = new RestTemplate();
+
+  private final String secretKey = System.getenv().getOrDefault("FLW_SECRET_KEY", "FLWSECK_TEST-xxxx");
+  private final String redirectUrl = System.getenv().getOrDefault("FLW_REDIRECT_URL", "http://localhost:3000/payment/complete");
+
+  @PostMapping("/checkout")
+  public ResponseEntity<Map<String,Object>> checkout(@RequestBody Map<String,Object> body) {
+    String amount = String.valueOf(body.getOrDefault("amount", "50"));
+    String currency = String.valueOf(body.getOrDefault("currency", "KES"));
+    String email = String.valueOf(body.getOrDefault("email", "demo@pathific.local"));
+    String phone = String.valueOf(body.getOrDefault("phone", "254700000000"));
+    String name = String.valueOf(body.getOrDefault("name", "Pathific Demo"));
+
+    Map<String,Object> payload = Map.of(
+      "tx_ref", "PATHIFIC-"+UUID.randomUUID(),
+      "amount", amount,
+      "currency", currency,
+      "redirect_url", redirectUrl,
+      "customer", Map.of("email", email, "phonenumber", phone, "name", name),
+      "customizations", Map.of("title", "Pathific", "description", "Structured micro‑learning")
+    );
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.setBearerAuth(secretKey);
+
+    HttpEntity<Map<String,Object>> req = new HttpEntity<>(payload, headers);
+    // Flutterwave v3 standard payments endpoint
+    ResponseEntity<Map> res = http.postForEntity("https://api.flutterwave.com/v3/payments", req, Map.class);
+    Map<String,Object> data = (Map<String,Object>) ((Map<String,Object>)res.getBody()).get("data");
+    String link = String.valueOf(data.get("link"));
+    return ResponseEntity.ok(Map.of("ok", true, "link", link));
+  }
+
+  @PostMapping("/webhook")
+  public ResponseEntity<Map<String,Object>> webhook(@RequestHeader("verif-hash") String hash, @RequestBody Map<String,Object> payload) {
+    // Verify hash equals your secret hash (set in Flutterwave dashboard)
+    // Update payment status in DB if verified
+    return ResponseEntity.ok(Map.of("ok", true));
+  }
+}
+Why this path: Hosted checkout is fastest to demo and supports multiple rails (cards, mobile money, M‑Pesa) with minimal code. The Spring Boot example shows similar patterns for v3 integrationGithub.
+
+Guide yourself through api docs to ascertain where to to make changes an how everything works.
